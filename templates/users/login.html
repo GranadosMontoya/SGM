@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+  <title>Login</title>
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/estiloslogin.css' %}">
+  <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock head %}
+
+
+
+{% block content %}
+<main class="form-signin w-100 m-auto text-center">
+  <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
+  <form method="post">{% csrf_token %}
+    <div class="form-floating">
+      {{form.username}}
+    </div>
+    <div class="form-floating">
+      {{form.password}}
+    </div>
+    <button type="submit">Ingresar</button>
+  </form>
+</main>  
+{% endblock content %}
+  

@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-  <title>index</title>
-{% endblock title %}
-
-
-{% block imports %}
-    <!-- Favicons -->
+{% block head %}
+    <title>index</title>
+      <!-- Favicons -->
     <link href="{% static 'img/favicon.png' %}" rel="icon">
     <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
   
@@ -31,8 +27,7 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
-{% endblock imports %}
-
+{% endblock head %}
 
 {% block content %}
   <!-- ======= Header ======= -->

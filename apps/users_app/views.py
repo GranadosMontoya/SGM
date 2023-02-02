@@ -5,14 +5,14 @@ from django.urls import reverse_lazy
 #import views
 from django.views.generic import FormView
 #import forms
-from django.contrib.auth.forms import AuthenticationForm
+from .forms import LoginForm
 #import mixing_user
 from .mixing_user import Loguin_null
 # Create your views here.
 
 class Login(Loguin_null,FormView):
-    template_name = 'users/index.html'
-    form_class = AuthenticationForm
+    template_name = 'users/login.html'
+    form_class = LoginForm
     success_url = reverse_lazy('admin_app:list_user')        
     def form_valid(self, form):
         user = authenticate(
