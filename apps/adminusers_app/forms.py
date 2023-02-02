@@ -1,14 +1,18 @@
+#import utils
 from django import forms
 from django.contrib.auth.hashers import make_password
+#import model
 from .models import User
 
+
 class UserCreateForm(forms.ModelForm):
+    """Formulario para agregar nuevos usuarios"""
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput, label='Confirm password')
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'gender']
+        fields = ['username', 'first_name', 'last_name', 'email', 'is_superuser', 'gender']
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -24,6 +28,7 @@ class UserCreateForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+    """Formulario para actualizar usuarios"""
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'gender']

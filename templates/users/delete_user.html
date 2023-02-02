@@ -1,0 +1,8 @@
+<h1 class="cell">Eliminar usuario: {{ object.email}}</h1>
+<form class="cell" method="post">{% csrf_token %}
+    <div class="callout secondary">
+        <h5>¿Desea elimiar este usuario?</h5>
+    </div>
+    <p>Confirme que desea elimiar este men</p>
+    <button type="submit" class="alert button">Confirmar</button>
+</form>
