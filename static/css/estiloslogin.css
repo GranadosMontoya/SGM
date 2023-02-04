@@ -48,3 +48,11 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
   }
+
+  body{
+    background-image: url(/static/img/fondo_loguin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  

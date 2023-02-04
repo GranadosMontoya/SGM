@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
 
 
-class Loguin_null(object):
+class not_login(object):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('admin_app:list_user')
+            return redirect('user_app:home')
         return super().dispatch(request, *args, **kwargs)
