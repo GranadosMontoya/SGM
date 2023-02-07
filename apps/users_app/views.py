@@ -1,9 +1,10 @@
 #import utils
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate,login,logout
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 #import views
-from django.views.generic import FormView,TemplateView
+from django.views.generic import FormView,TemplateView,View
 #import forms
 from .forms import LoginForm
 #import mixing
@@ -21,6 +22,15 @@ class Login(not_login,FormView):
         )
         login(self.request, user)
         return super(Login, self).form_valid(form)
+
+class Logout(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(
+            reverse(
+                'user_app:login'
+            )
+        )
 
 
 class Home(LoginRequiredMixin,TemplateView):

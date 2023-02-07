@@ -14,7 +14,6 @@ class LoginForm(AuthenticationForm):
                 'class':'form-control',
                 'id':'floatingInput',
                 'placeholder':'Username',
-                "autofocus": True,
             }
         )
     )
