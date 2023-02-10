@@ -32,3 +32,14 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'gender']
+
+    def __init__(self, *args, **kwargs,):
+        """
+        Override method init for add class css bootstrap to forms
+        """
+        super().__init__(*args, **kwargs,)
+        for field in self.fields:
+            if field == 'is_staff':
+                self.fields[field].widget.attrs.update({'class': 'form-check-input'})
+            else:
+                self.fields[field].widget.attrs.update({'class': 'form-control'})

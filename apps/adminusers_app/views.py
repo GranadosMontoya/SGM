@@ -16,7 +16,7 @@ class UserCreateView(LoginRequiredMixin,SoloAdmin,CreateView):
     model = User
     form_class = UserCreateForm
     template_name = "users/create_user.html"
-    success_url = reverse_lazy('admin_user:list_user')
+    success_url = reverse_lazy('admin_app:list_user')
     login_url = reverse_lazy('user_app:login')
     
 
@@ -25,12 +25,14 @@ class UserListView(LoginRequiredMixin,SoloAdmin,ListView):
     model = User
     template_name = "users/list_user.html"
     context_object_name = 'users'
+    paginate_by = 7
     login_url = reverse_lazy('user_app:login')
 
 
 class UserUpdateView(LoginRequiredMixin,SoloAdmin,UpdateView):
     model = User
     form_class = UserUpdateForm
+    context_object_name = 'user'
     template_name = "users/update_user.html"
     success_url = reverse_lazy('admin_app:list_user')
     login_url = reverse_lazy('user_app:login')

@@ -1,6 +1,78 @@
-<h1>Esto es para listar</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-{% for us in users %}
-<h3>{{us.email}}</h3>
-{% endfor %}
+{% block head %}
+<title>Lista de usuarios</title>
+{% endblock head %}
+    
+
+
+
+{% block content %}
+    {% include '../includes/nav.html' %}
+    <div class="container-fluid">
+        <a style="float: left; width: 150px;height: 40px; text-align: center;margin-top: 20px;margin-left: 15px;" class="btn btn-outline-success" role="button" href="{% url 'admin_app:create_user' %}">
+            Agregar usuario
+        </a>
+        <form class="d-flex" method="get" style="padding: 20px 20px; width: 250px; float: right;">{% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="usuario" id="usuario">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <table class="table table-hover" style="width: 100%;" >
+        <caption>Lista de usuarios</caption>
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Email</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Tipo de usuario</th>
+            <th scope="colgroup">Accion</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <th scope="row">{{u.id}}</th>
+                <td>{{u.first_name}}</td>
+                <td>{{u.last_name}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.gender}}</td>
+                <td>#</td>
+                <!-- Button trigger modal -->
+                <td>
+                    <a type="button" class="btn btn-primary mod" href="{% url 'admin_app:update_user' u.id %}">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_paginated %}
+        <nav aria-label="...">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.previous_page_number}} "tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                {% endif %}
+                {% for pagina in paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{ pagina }}</a></li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+  
+{% endblock content %}
     

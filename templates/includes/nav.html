@@ -2,9 +2,10 @@
 
 {% block head %}
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 {% endblock head %}
 
-<nav class="navbar sticky-top bg-light">
+<nav class="navbar sticky-top" style="background-color:rgb(232, 242, 243);">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">
@@ -13,7 +14,7 @@
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center  text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="mis_a">
             <img src="{% static 'img/user-circle-regular-24.png' %}" alt="">
-            <strong id="user">{{user.email}}</strong>
+            <strong id="user">{{user.first_name}} {{user.last_name}}</strong>
         </a>
         <ul class="dropdown-menu text-small shadow">
             <li><a class="dropdown-item" href="#">Productividad</a></li>
