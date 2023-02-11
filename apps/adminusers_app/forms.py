@@ -32,7 +32,14 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'gender']
-
+        help_texts = {
+            'username': '',
+            'first_name': '',
+            'last_name': '',
+            'email': '',
+            'is_staff': '',
+            'gender': '',
+        }
     def __init__(self, *args, **kwargs,):
         """
         Override method init for add class css bootstrap to forms
@@ -40,6 +47,10 @@ class UserUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs,)
         for field in self.fields:
             if field == 'is_staff':
-                self.fields[field].widget.attrs.update({'class': 'form-check-input'})
+                self.fields[field].widget.attrs.update({'class':"form-check-input" ,'id':"validationFormCheck1"})
+                self.fields[field].label = '¿Es un super usuario?'
             else:
                 self.fields[field].widget.attrs.update({'class': 'form-control'})
+                self.fields[field].label = field
+    
+    

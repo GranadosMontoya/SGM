@@ -2,3 +2,13 @@
     text-align: center;
     background-color:rgb(232, 242, 243);
 }
+
+.form-control{
+    margin-bottom: 1rem;
+}
+
+#checkbox-id{
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}

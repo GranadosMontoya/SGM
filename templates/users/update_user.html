@@ -14,15 +14,14 @@
             <div class="py-5 text-center">
                 <h2>Actualizar usuario</h2>
             </div>
-            <div class="text-center">
-              <h4 class="mb-3">Datos</h4>  
-              <form class="row g-3 needs-validation form_update" novalidate style="width: 450px; margin: 0 auto;" method="post">{% csrf_token %}             
-                      {{form}}
-                      <a class="btn btn-outline-warning" type="button" href="#">Actualizar contraseña</a>
-                      <hr class="my-4">
-                  <button class="btn btn-success" type="submit">Guardar</button>
+            <form class="row g-3 needs-validation form_update d-flex justify-content-center" novalidate>
+                <div class="col-md-4">
+                    {{form}}                  
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
               </form>
-          </div>
             <footer class="my-5 pt-5 text-muted text-center text-small">
                 <p class="mb-1">&copy; 2022 GraMon</p>
                 <ul class="list-inline">
