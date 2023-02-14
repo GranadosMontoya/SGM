@@ -41,16 +41,29 @@ class UserUpdateForm(forms.ModelForm):
             'gender': '',
         }
     def __init__(self, *args, **kwargs,):
-        """
-        Override method init for add class css bootstrap to forms
-        """
         super().__init__(*args, **kwargs,)
         for field in self.fields:
             if field == 'is_staff':
-                self.fields[field].widget.attrs.update({'class':"form-check-input" ,'id':"validationFormCheck1"})
+                self.fields[field].widget = forms.CheckboxInput(attrs={
+                    'class':"form-check-input",
+                    'id':"validationFormCheck1"
+                })
                 self.fields[field].label = '¿Es un super usuario?'
+                self.fields[field].widget = forms.CheckboxInput(attrs={'class': "form-check-input"})
             else:
                 self.fields[field].widget.attrs.update({'class': 'form-control'})
                 self.fields[field].label = field
-    
-    
+
+    def is_valid(self):
+        result = super().is_valid()
+        if not result:
+            for field, errors in self.errors.items():
+                self.non_field_errors().clear()
+                self.errors.clear()
+                error_msg = f"{field.title()}: {', '.join(errors)}\n"
+                self.add_error(None, error_msg)
+            for field in self.errors:
+                if field in self.fields:
+                    attrs = self.fields[field].widget.attrs
+                    attrs.update({'class': attrs.get('class', '') + ' is-invalid'})
+        return result

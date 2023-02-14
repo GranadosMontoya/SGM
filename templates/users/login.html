@@ -15,10 +15,10 @@
 <main class="form-signin w-100 m-auto text-center">
   <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
   {% if form.non_field_errors %}
-  {% for error in form.non_field_errors %}
-      <div class="alert alert-danger">{{ error }}</div>
-  {% endfor %}
-{% endif %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+  {% endif %}
   <form method="post">
     {% csrf_token %}
     <div class="form-floating" style="margin-bottom: 30px;">

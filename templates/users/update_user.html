@@ -14,14 +14,27 @@
             <div class="py-5 text-center">
                 <h2>Actualizar usuario</h2>
             </div>
-            <form class="row g-3 needs-validation form_update d-flex justify-content-center" novalidate>
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ field }}: {{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+          
+        
+
+            <form class="row g-3 needs-validation form_update d-flex justify-content-center" method="post" novalidate>{% csrf_token %}
                 <div class="col-md-4">
-                    {{form}}                  
+                    {{form.as_p}}                  
                 </div>
                 <div class="col-12">
                   <button class="btn btn-primary" type="submit">Submit form</button>
                 </div>
-              </form>
+            </form>
             <footer class="my-5 pt-5 text-muted text-center text-small">
                 <p class="mb-1">&copy; 2022 GraMon</p>
                 <ul class="list-inline">
