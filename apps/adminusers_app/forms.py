@@ -13,6 +13,14 @@ class UserCreateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'is_superuser', 'gender']
+        help_texts = {
+        'username': '',
+        'first_name': '',
+        'last_name': '',
+        'email': '',
+        'is_superuser': '',
+        'gender': '',
+        }
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -25,6 +33,33 @@ class UserCreateForm(forms.ModelForm):
         instance.password = make_password(self.cleaned_data['password'])
         instance.save()
         return instance
+
+    def __init__(self, *args, **kwargs,):
+        super().__init__(*args, **kwargs,)
+        for field in self.fields:
+            if field == 'is_superuser':
+                self.fields[field].widget = forms.CheckboxInput(attrs={
+                    'class':"form-check-input",
+                    'id':"validationFormCheck1"
+                })
+                self.fields[field].label = '¿Es un super usuario?'
+                self.fields[field].widget = forms.CheckboxInput(attrs={'class': "form-check-input"})
+            else:
+                self.fields[field].widget.attrs.update({'class': 'form-control'})
+                self.fields[field].label = field
+    def is_valid(self):
+        result = super().is_valid()
+        if not result:
+            for field, errors in self.errors.items():
+                self.non_field_errors().clear()
+                self.errors.clear()
+                error_msg = f"{field.title()}: {', '.join(errors)}\n"
+                self.add_error(None, error_msg)
+            for field in self.errors:
+                if field in self.fields:
+                    attrs = self.fields[field].widget.attrs
+                    attrs.update({'class': attrs.get('class', '') + ' is-invalid'})
+        return result
 
 
 class UserUpdateForm(forms.ModelForm):

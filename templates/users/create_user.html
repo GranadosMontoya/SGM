@@ -1,4 +1,52 @@
-<form method="post">{% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Enviar</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>{{user.first_name}} {{user.last_name}}</title>
+    <link rel="stylesheet" href="{% static 'css/update.css'%}">
+{% endblock head %}
+
+
+{% block content %}
+    {% include '../includes/nav.html' %}
+    <div class="div_upload" style="padding-bottom: 40px;">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Crear nuevo usuario</h2>
+            </div>
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ field }}: {{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="div-form">
+            <form class="row g-3 needs-validation form_update d-flex justify-content-center" method="post" novalidate>{% csrf_token %}
+                <div class="col-md-4">
+                    {{form.as_p}}                  
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Agregar usuario</button>
+                </div>
+            </form>
+        </div>
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; 2022 GraMon</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                </ul>
+            </footer>
+        </main>
+    </div>
+{% endblock content %}
+
+
+{% block scriptjs %}
+    <script src="{% static 'js/form-validation.js' %}"></script>
+{% endblock scriptjs %}
+    

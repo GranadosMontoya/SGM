@@ -1,6 +1,13 @@
-.form_update{
+.form_update {
     text-align: center;
-    background-color:rgb(232, 242, 243);
+    background-color: rgb(232, 242, 243);
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.div-form{
+    width: 50%;
+    margin: 0 auto;
 }
 
 .form-control{
