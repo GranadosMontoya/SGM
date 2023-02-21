@@ -42,11 +42,14 @@ class UserCreateForm(forms.ModelForm):
                     'class':"form-check-input",
                     'id':"validationFormCheck1"
                 })
-                self.fields[field].label = '¿Es un super usuario?'
+                self.fields[field].label = 'is this super user?'
                 self.fields[field].widget = forms.CheckboxInput(attrs={'class': "form-check-input"})
             else:
                 self.fields[field].widget.attrs.update({'class': 'form-control'})
                 self.fields[field].label = field
+        self.fields['password2'].label = 'Confirm Password'
+        self.fields['first_name'].label = 'first name'
+        self.fields['last_name'].label = 'last name'
     def is_valid(self):
         result = super().is_valid()
         if not result:

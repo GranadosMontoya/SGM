@@ -3,7 +3,7 @@
 
 {% block head %}
     <title>{{user.first_name}} {{user.last_name}}</title>
-    <link rel="stylesheet" href="{% static 'css/update.css'%}">
+    <link rel="stylesheet" href="{% static 'css/base_form.css'%}">
 {% endblock head %}
 
 
@@ -12,7 +12,7 @@
     <div class="div_upload" style="padding-bottom: 40px;">
         <main>
             <div class="py-5 text-center">
-                <h2>Crear nuevo usuario</h2>
+                <h2>New user</h2>
             </div>
             {% if form.errors %}
             <div class="alert alert-danger">
@@ -23,13 +23,13 @@
                 {% endfor %}
             </div>
         {% endif %}
-        <div class="div-form">
+        <div class="div-form" style="background-color: rgb(228, 255, 158);">
             <form class="row g-3 needs-validation form_update d-flex justify-content-center" method="post" novalidate>{% csrf_token %}
                 <div class="col-md-4">
                     {{form.as_p}}                  
                 </div>
                 <div class="col-12">
-                  <button class="btn btn-primary" type="submit">Agregar usuario</button>
+                  <button class="btn btn-primary" type="submit">add user</button>
                 </div>
             </form>
         </div>

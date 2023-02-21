@@ -33,7 +33,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Genero</th>
                 <th scope="col">Tipo de usuario</th>
-                <th scope="colgroup">Accion</th>
+                <th scope="colgroup" style="padding-left: 50px;">Accion</th>
     
             </tr>
             </thead>
@@ -49,8 +49,12 @@
                     <!-- Button trigger modal -->
                     <td>
                         <a type="button" class="btn btn-primary mod" href="{% url 'admin_app:update_user' u.id %}">
-                            Editar
+                            Edit
                         </a>
+                        <a type="button" class="btn btn-primary mod" href="{% url 'admin_app:update_user' u.id %}">
+                            Delete
+                        </a>
+                    </td>
                     </td>
                 </tr>
             {% endfor %}
