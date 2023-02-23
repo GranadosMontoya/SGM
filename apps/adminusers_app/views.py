@@ -1,5 +1,5 @@
 #import utils
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #import forms
@@ -9,7 +9,6 @@ from .models import User
 # import mixing
 from .mixing_admin import SoloAdmin
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 
 class UserCreateView(LoginRequiredMixin,SoloAdmin,CreateView):
     """Clase para crear usuarios"""
@@ -27,6 +26,7 @@ class UserListView(LoginRequiredMixin,SoloAdmin,ListView):
     context_object_name = 'users'
     paginate_by = 7
     login_url = reverse_lazy('user_app:login')
+    
 
 
 class UserUpdateView(LoginRequiredMixin,SoloAdmin,UpdateView):
@@ -37,10 +37,6 @@ class UserUpdateView(LoginRequiredMixin,SoloAdmin,UpdateView):
     success_url = reverse_lazy('admin_app:list_user')
     login_url = reverse_lazy('user_app:login')
 
-
-
-class UserDeleteView(LoginRequiredMixin,SoloAdmin,DeleteView):
+class UserDeleteView(DeleteView):
     model = User
-    template_name = "users/delete_user.html"
     success_url = reverse_lazy('admin_app:list_user')
-    login_url = reverse_lazy('user_app:login')

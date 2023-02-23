@@ -1,8 +1,20 @@
-<h1 class="cell">Eliminar usuario: {{ object.email}}</h1>
-<form class="cell" method="post">{% csrf_token %}
-    <div class="callout secondary">
-        <h5>¿Desea elimiar este usuario?</h5>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">{{ u.first_name }} {{ u.last_name }} {{u.id}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="cell" method="post" action="{% url 'admin_app:delete_user' u.id%}">{% csrf_token %}
+              <div class="callout secondary">
+                <h5>¿Desea eliminar este usuario?</h5>
+              </div>
+              <p>Confirme que desea eliminar al usuario {{ u.email }}</p>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Confirm</button>
+              </div>
+            </form>
+          </div>          
     </div>
-    <p>Confirme que desea elimiar este men</p>
-    <button type="submit" class="alert button">Confirmar</button>
-</form>
+</div>        

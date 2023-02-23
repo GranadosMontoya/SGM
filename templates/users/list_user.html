@@ -51,12 +51,16 @@
                         <a type="button" class="btn btn-primary mod" href="{% url 'admin_app:update_user' u.id %}">
                             Edit
                         </a>
-                        <a type="button" class="btn btn-primary mod" href="{% url 'admin_app:update_user' u.id %}">
-                            Delete
-                        </a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{u.id}}">
+                            Eliminar
+                        </button>
                     </td>
                     </td>
                 </tr>
+                <div class="modal fade" id="staticBackdrop{{u.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    {% include '../users/delete_user.html' %}            
+                </div>
             {% endfor %}
             </tbody>
         </table>
