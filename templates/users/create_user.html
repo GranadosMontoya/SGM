@@ -14,16 +14,12 @@
             <div class="py-5 text-center">
                 <h2>New user</h2>
             </div>
-            {% if form.errors %}
-            <div class="alert alert-danger">
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <p>{{ field }}: {{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
         <div class="div-form" style="background-color: rgb(228, 255, 158);">
+            {% if form.errors %}
+            <div class="alert alert-danger col-md-4 d-flex justify-content-center" style="width: 100%;">
+                Valide la información suministrada
+            </div>
+            {% endif %}
             <form class="row g-3 needs-validation form_update d-flex justify-content-center" method="post" novalidate>{% csrf_token %}
                 <div class="col-md-4">
                     {{form.as_p}}                  
