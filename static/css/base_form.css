@@ -18,3 +18,12 @@
     margin: 0 auto;
     margin-bottom: 50px;
 }
+
+.errorlist{
+    color: red;
+    list-style-type: none;
+}
+
+.errorlist li {
+    text-indent: -20px; /* Desplaza el texto hacia la izquierda para que ocupe el espacio donde estaria el punto */
+}

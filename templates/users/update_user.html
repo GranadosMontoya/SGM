@@ -14,13 +14,9 @@
             <div class="py-5 text-center">
                 <h2>Actualizar usuario</h2>
             </div>
-            {% if form.errors %}
-            <div class="alert alert-danger">
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <p>{{ field }}: {{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
+        {% if form.errors %}
+            <div class="alert alert-danger d-flex justify-content-center">
+                <h6>Valide la información suministrada</h6>
             </div>
         {% endif %}
         <div class="div-form" style="background-color: rgb(232, 242, 243);">
