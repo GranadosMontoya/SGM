@@ -14,8 +14,7 @@
         <a style="width: 150px; text-align: center; margin-top: 20px; margin-left: 15px;" class="btn btn-outline-success" role="button" href="{% url 'admin_app:create_user' %}">
           Add user
         </a>
-        <form class="d-flex" method="get" style="padding: 20px 20px; width: 250px;">
-          {% csrf_token %}
+        <form class="d-flex" method="get" style="padding: 20px 20px; width: 250px;">{% csrf_token %}
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="usuario" id="usuario">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -28,11 +27,11 @@
             <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">First_name</th>
+                <th scope="col">First name</th>
                 <th scope="col">Last name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Gender</th>
-                <th scope="col">Type of user</th>
+                <th scope="col">Administrator</th>
                 <th scope="colgroup" style="padding-left: 50px;">Accion</th>
     
             </tr>
@@ -45,7 +44,7 @@
                     <td>{{u.last_name}}</td>
                     <td>{{u.email}}</td>
                     <td>{{u.gender}}</td>
-                    <td>#</td>
+                    <td>{{u.is_superuser}}</td>
                     <!-- Button trigger modal -->
                     <td>
                         <a type="button" class="btn btn-primary mod" href="{% url 'admin_app:update_user' u.id %}">

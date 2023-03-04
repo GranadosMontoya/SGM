@@ -78,12 +78,14 @@
                         Customers
                     </a>
                 </li>
-                <li>
-                    <a class="nav-link text-decoration-none" id="mis_a" data-bs-toggle="collapse" href="#opciones_Admin" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <i class='bx bx-user-circle'></i>
-                        administrar usuarios
-                    </a>
-                </li>
+                {% if request.user.is_superuser %}
+                    <li>
+                        <a class="nav-link text-decoration-none" id="mis_a" data-bs-toggle="collapse" href="#opciones_Admin" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class='bx bx-user-circle'></i>
+                            administrar usuarios
+                        </a>
+                    </li>
+                {% endif %}   
                 <div class="collapse" id="opciones_Admin" style="padding-left: 30px; text-align: left;">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li>
