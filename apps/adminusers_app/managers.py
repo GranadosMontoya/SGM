@@ -1,8 +1,7 @@
-from django.db import models
 from django.db.models import Q
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import UserManager
 
-class USerManager(BaseUserManager,models.Manager):
+class USerManager(UserManager):
     
     def listar_usuario(self, palabra):
         consulta = self.filter(

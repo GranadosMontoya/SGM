@@ -50,21 +50,21 @@
                 </li>
                 <li>
                     <a class="nav-link text-decoration-none" id="mis_a" data-bs-toggle="collapse" href="#opciones_product" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <i class='bx bxs-package'></i>
+                        <i class='bx bxs-data'></i>
                         Products
                     </a>
                 </li>
                 <div class="collapse" id="opciones_product" style="padding-left: 30px; text-align: left;">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li>
-                            <a class="nav-link text-decoration-none" href="#" id="mis_a">
-                                <i class='bx bx-group'></i >
-                                    Listar productos
+                            <a class="nav-link text-decoration-none" href="{% url 'products_app:list_products' %}" id="mis_a">
+                                <i class='bx bxs-component'></i>
+                                    Catalogo de productos
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link text-decoration-none" href="#"id="mis_a">
-                                <i class='bx bxs-user-plus' ></i>
+                            <a class="nav-link text-decoration-none" href="{% url 'products_app:create_product' %}"id="mis_a">
+                                <i class='bx bx-package'></i>
                                     Registrar productos
                             </a>
                         </li>

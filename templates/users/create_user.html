@@ -2,47 +2,78 @@
 {% load static %}
 
 {% block head %}
-    <title>{{user.first_name}} {{user.last_name}}</title>
-    <link rel="stylesheet" href="{% static 'css/base_form.css'%}">
+<title>{{user.first_name}} {{user.last_name}}</title>
+<link rel="stylesheet" href="{% static 'css/base_form.css'%}">
 {% endblock head %}
 
-
 {% block content %}
-    {% include '../includes/nav.html' %}
-    <div class="div_upload" style="padding-bottom: 40px;">
-        <main>
-            <div class="py-5 text-center">
-                <h2>New user</h2>
-            </div>
-            {% if form.errors %}
-                <div class="alert alert-danger d-flex justify-content-center">
-                    <h6>Valide la información suministrada</h6>
-                </div>
-            {% endif %}
-            <div class="div-form" style="background-color: rgb(228, 255, 158);">
-            <form class="row g-3 form_update d-flex justify-content-center" method="post" novalidate>{% csrf_token %}
-                <div class="col-md-4">
-                    {{form.as_p}}                  
-                </div>
-                <div class="col-12">
-                  <button class="btn btn-primary" type="submit">add user</button>
-                </div>
-            </form>
-        </div>
-            <footer class="my-5 pt-5 text-muted text-center text-small">
-                <p class="mb-1">&copy; 2022 GraMon</p>
-                <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#">Privacy</a></li>
-                    <li class="list-inline-item"><a href="#">Terms</a></li>
-                    <li class="list-inline-item"><a href="#">Support</a></li>
-                </ul>
-            </footer>
-        </main>
+{% include '../includes/nav.html' %}
+<div class="div_upload" style="padding-bottom: 40px;">
+    <div class="py-5 text-center">
+        <h2>New user</h2>
     </div>
+    <div class="div-form" style="background-color: rgb(228, 255, 158);">
+        <form method="post" class="row g-3 form d-flex justify-content-center">{% csrf_token %}
+            <fieldset class="col-md-4">
+                {% for field in form %}
+                    {% if field.name == 'is_superuser' %}   
+                    <div class="form-check form-check-inline" style="margin-bottom: 15px;">
+                        {{ field }}
+                        <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    </div>                                                      
+                    {% else %}
+                        <div class="form-floating mb-3">
+                            {{ field }}
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback" style="text-align: left;">
+                                    <i class='bx bx-x bx-tada' ></i>
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </fieldset>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+        </form>
+    </div>
+    {% if messages %}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="..." class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Resto del contenido de la página... -->
+
+
+    
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022 GraMon</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
 {% endblock content %}
 
 
 {% block scriptjs %}
-    <script src="{% static 'js/form-validation.js' %}"></script>
+<script src="{% static 'js/form-validation.js' %}"></script>
 {% endblock scriptjs %}
-    

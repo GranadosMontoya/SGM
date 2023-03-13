@@ -11,13 +11,15 @@ class Validator_label(forms.ModelForm):
             if field == 'is_superuser':
                 self.fields[field].widget = forms.CheckboxInput(attrs={
                     'class':"form-check-input",
-                    'id':"validationFormCheck1"
                 })
                 self.fields[field].label = 'is this super user?'
                 self.fields[field].widget = forms.CheckboxInput(attrs={'class': "form-check-input"})
             else:
-                self.fields[field].widget.attrs.update({'class': 'form-control','id': 'validationCustom01'})
                 self.fields[field].label = field
+                self.fields[field].widget.attrs.update({
+                    'class': 'form-control',
+                    'id':'floatingInput',
+                    'placeholder':self.fields[field].label,})
         self.fields['first_name'].label = 'first name'
         self.fields['last_name'].label = 'last name'
         

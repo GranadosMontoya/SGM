@@ -13,9 +13,11 @@ class User(AbstractUser):
     )
     gender = models.CharField(max_length=10, blank=True, choices=GENDER_CHOICES)
 
+    email = models.EmailField(("email address"), unique=True)
+
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email','is_superuser']
     
     objects = USerManager()
 
     def __str__(self):
-        return self.first_name + self.email
+        return self.email

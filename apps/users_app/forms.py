@@ -12,7 +12,6 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 'class':'form-control',
-                'id':'floatingInput',
                 'placeholder':'Username',
             }
         )
@@ -28,7 +27,6 @@ class LoginForm(AuthenticationForm):
                 "autocomplete": "current-password",
                 'type':'password',
                 'class':'form-control',
-                'id':'floatingPassword',
                 'placeholder':'Password',
             }
         ),

@@ -1,5 +1,5 @@
 #import utils
-from django.shortcuts import render,get_object_or_404
+from django.contrib import messages
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #import forms
@@ -17,6 +17,11 @@ class UserCreateView(LoginRequiredMixin,MixingAdmin,CreateView):
     template_name = "users/create_user.html"
     success_url = reverse_lazy('admin_app:list_user')
     login_url = reverse_lazy('user_app:login')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'El formulario se ha enviado correctamente.')
+        return response
     
 
 

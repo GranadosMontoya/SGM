@@ -1,13 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% include 'includes/nav.html' %}
-    <h1>Esto aqui es para los productos</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  <title>New Product</title>
+  <link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+{% endblock head %}
+
+
+{% block content %}
+{% include 'includes/nav.html' %}
+<div class="py-5 text-center">
+  <legend>Add Product</legend>
+</div>
+<div class="div-form" style="background-color: rgb(228, 255, 158);">
+  <form method="post" class="row g-3 form d-flex justify-content-center">{% csrf_token %}
+    <fieldset class="col-md-4">
+      {% for field in form %}
+        <div class="form-floating mb-3">
+          {{ field }}
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {% for error in field.errors %}
+            <div class="invalid-feedback" style="text-align: left;">
+              <i class='bx bx-x bx-tada' ></i>
+              {{ error }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+</div>
+
+
+
+
+{% endblock content %}
+
+{% block scriptjs %}
+    <script src="{% static 'js/form-validation.js' %}"></script>
+{% endblock scriptjs %}

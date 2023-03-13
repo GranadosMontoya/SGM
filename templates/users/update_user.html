@@ -10,22 +10,34 @@
 {% block content %}
     {% include '../includes/nav.html' %}
     <div class="div_upload" style="padding-bottom: 40px;">
-        <main>
-            <div class="py-5 text-center">
-                <h2>Actualizar usuario</h2>
-            </div>
-        {% if form.errors %}
-            <div class="alert alert-danger d-flex justify-content-center">
-                <h6>Valide la información suministrada</h6>
-            </div>
-        {% endif %}
+        <div class="py-5 text-center">
+            <h2>Actualizar usuario</h2>
+        </div>
         <div class="div-form" style="background-color: rgb(232, 242, 243);">
-            <form class="row g-3 needs-validation form_update d-flex justify-content-center" method="post" novalidate>{% csrf_token %}
-                <div class="col-md-4">
-                    {{form.as_p}}                  
-                </div>
+            <form method="post" class="row g-3 form d-flex justify-content-center">{% csrf_token %}
+                <fieldset class="col-md-4">
+                    {% for field in form %}
+                        {% if field.name == 'is_superuser' %}   
+                        <div class="form-check form-check-inline" style="margin-bottom: 15px;">
+                            {{ field }}
+                            <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>                                                      
+                        {% else %}
+                            <div class="form-floating mb-3">
+                                {{ field }}
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback" style="text-align: left;">
+                                        <i class='bx bx-x bx-tada' ></i>
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </fieldset>
                 <div class="col-12">
-                  <button class="btn btn-primary" type="submit">Submit form</button>
+                    <button class="btn btn-primary" type="submit">Submit form</button>
                 </div>
             </form>
         </div>
@@ -37,7 +49,6 @@
                     <li class="list-inline-item"><a href="#">Support</a></li>
                 </ul>
             </footer>
-        </main>
     </div>
 {% endblock content %}
 
